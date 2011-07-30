@@ -162,6 +162,29 @@ void VJoyQtGUI::slotBallChanged(int id, int stateX, int stateY)
 
 }
 
+void VJoyQtGUI::keyPressEvent(QKeyEvent *event)
+{
+    event->accept();
+    switch(event->key()) {
+    case Qt::Key_S:
+        scanDevices();
+        break;
+    case Qt::Key_C:
+        connectToDevices();
+        break;
+    case Qt::Key_D:
+        disconnectFromDevices();
+        break;
+    case Qt::Key_Escape:
+        close();
+        break;
+    default:
+        event->ignore();
+        break;
+    }
+    QMainWindow::keyPressEvent(event);
+}
+
 void VJoyQtGUI::setJoystickInfoVisible(bool visible)
 {
     if(visible) {

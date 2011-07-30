@@ -26,6 +26,7 @@
 #define __V_VIDEO_SERVER_
 
 #include <QMainWindow>
+#include <QKeyEvent>
 #include <QVector>
 
 namespace Ui
@@ -55,6 +56,8 @@ private slots:
     void slotBallChanged(int id, int stateX, int stateY);
 
 private:
+    void keyPressEvent(QKeyEvent *event);
+
     void setJoystickInfoVisible(bool visible);
     void setDeviceControlVisible(bool visible);
 
