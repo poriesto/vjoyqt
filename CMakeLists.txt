@@ -1,0 +1,42 @@
+# --------------------------------------------
+# cmake file for vJoyQt library
+# author: Evgeny Proydakov lord.tiran@gmail.com
+# --------------------------------------------
+CMAKE_MINIMUM_REQUIRED(VERSION 2.6.0)
+
+PROJECT(vJoyQt)
+MESSAGE(STATUS "CREATE V_JOY_QT")
+
+# temp setting
+SET(CMAKE_BUILD_TYPE Debug)
+
+SET(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/build)
+SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/build)
+
+# add the include folder to the include path
+INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR})
+
+FIND_PACKAGE(Qt4 COMPONENTS QtCore QtGui REQUIRED)
+INCLUDE(${QT_USE_FILE})
+
+SET(GUI_HEADER_FILES
+    main.cpp)
+
+SET(LIB_HEADER_FILES
+	v_joystick_adapter.h)
+
+SET(LIB_SOURCE_FILES
+	v_joystick_adapter.cpp)
+
+QT4_WRAP_CPP(MOC_SOURCES ${LIB_HEADER_FILES})
+
+INCLUDE_DIRECTORIES(${PROJECT_BINARY_DIR})
+
+ADD_LIBRARY(vJoyQt SHARED ${LIB_HEADER_FILES} ${LIB_SOURCE_FILES} ${MOC_SOURCES})
+TARGET_LINK_LIBRARIES(vJoyQt ${QT_LIBRARIES})
+TARGET_LINK_LIBRARIES(vJoyQt ${SDL_LIBRARY})
+
+ADD_EXECUTABLE(v_joystick_gui ${GUI_HEADER_FILES} ${LIB_HEADER_FILES})
+ADD_DEPENDENCIES(v_joystick_gui vJoyQt)
+TARGET_LINK_LIBRARIES(v_joystick_gui ${SDL_LIBRARY})
+TARGET_LINK_LIBRARIES(v_joystick_gui ${QT_LIBRARIES})
