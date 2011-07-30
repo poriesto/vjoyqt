@@ -26,21 +26,45 @@
 #define __V_VIDEO_SERVER_
 
 #include <QMainWindow>
+#include <QVector>
 
 namespace Ui
 {
 class MainWindow;
-}
+};
+
+class VJoystickAdapter;
 
 class VJoyQtGUI : public QMainWindow
 {
     Q_OBJECT
+
 public:
     VJoyQtGUI(QWidget *parent = 0 );
     ~VJoyQtGUI();
 
+private slots:
+    void connectToDevices();
+    void disconnectFromDevices();
+
+    void scanDevices();
+
+    void slotButtonChanged(int id, bool state);
+    void slotAxisChanged(int id, int state);
+    void slotHatCanged(int id, int state);
+    void slotBallChanged(int id, int stateX, int stateY);
+
+private:
+    void setJoystickInfoVisible(bool visible);
+    void setDeviceControlVisible(bool visible);
+
+    void setJoystickInfo();
+    void clearJoystickInfo();
+
 private:
     Ui::MainWindow *ui;
+    VJoystickAdapter *m_adapter;
+    QVector<bool> m_visibleButtons;
 };
 
 #endif // __V_VIDEO_SERVER_

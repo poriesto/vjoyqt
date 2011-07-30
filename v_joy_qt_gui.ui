@@ -17,16 +17,19 @@
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout">
+      <property name="sizeConstraint">
+       <enum>QLayout::SetMinimumSize</enum>
+      </property>
       <item>
        <widget class="QLabel" name="selectJoyLabel">
         <property name="maximumSize">
          <size>
-          <width>16777215</width>
+          <width>120</width>
           <height>30</height>
          </size>
         </property>
         <property name="text">
-         <string>Select the joystick</string>
+         <string>Select the joystick:</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
@@ -47,7 +50,7 @@
        <widget class="QPushButton" name="scanDevicesButton">
         <property name="maximumSize">
          <size>
-          <width>16777215</width>
+          <width>120</width>
           <height>30</height>
          </size>
         </property>
@@ -56,23 +59,13 @@
         </property>
        </widget>
       </item>
-      <item>
-       <widget class="QPushButton" name="rescanDevicesButton">
-        <property name="maximumSize">
-         <size>
-          <width>16777215</width>
-          <height>30</height>
-         </size>
-        </property>
-        <property name="text">
-         <string>Rescan devices</string>
-        </property>
-       </widget>
-      </item>
      </layout>
     </item>
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <property name="sizeConstraint">
+       <enum>QLayout::SetMinimumSize</enum>
+      </property>
       <item>
        <widget class="QPushButton" name="connectButton">
         <property name="maximumSize">
@@ -83,19 +76,6 @@
         </property>
         <property name="text">
          <string>Connect</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="reconnectButton">
-        <property name="maximumSize">
-         <size>
-          <width>16777215</width>
-          <height>30</height>
-         </size>
-        </property>
-        <property name="text">
-         <string>Reconnect</string>
         </property>
        </widget>
       </item>
@@ -116,24 +96,30 @@
     </item>
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_3">
+      <property name="sizeConstraint">
+       <enum>QLayout::SetMaximumSize</enum>
+      </property>
       <item>
-       <widget class="QGroupBox" name="groupBox">
+       <widget class="QGroupBox" name="joyStateBox">
         <property name="minimumSize">
          <size>
           <width>300</width>
-          <height>400</height>
+          <height>250</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
-          <width>500</width>
+          <width>55555</width>
           <height>400</height>
          </size>
         </property>
         <property name="title">
          <string>Joystick state</string>
         </property>
-        <layout class="QVBoxLayout" name="verticalLayout_9">
+        <layout class="QVBoxLayout" name="verticalLayout_6">
+         <property name="sizeConstraint">
+          <enum>QLayout::SetMaximumSize</enum>
+         </property>
          <item>
           <layout class="QHBoxLayout" name="horizontalLayout_14">
            <item>
@@ -142,8 +128,20 @@
               <layout class="QHBoxLayout" name="horizontalLayout_9">
                <item>
                 <widget class="QLabel" name="label_4">
+                 <property name="minimumSize">
+                  <size>
+                   <width>45</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>45</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
                  <property name="text">
-                  <string>X axis:</string>
+                  <string>X   axis:</string>
                  </property>
                 </widget>
                </item>
@@ -162,8 +160,23 @@
                </item>
                <item>
                 <widget class="QLabel" name="xAxisLabel">
+                 <property name="minimumSize">
+                  <size>
+                   <width>45</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>45</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
                  <property name="text">
-                  <string>0</string>
+                  <string/>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                  </property>
                 </widget>
                </item>
@@ -173,8 +186,20 @@
               <layout class="QHBoxLayout" name="horizontalLayout_10">
                <item>
                 <widget class="QLabel" name="label_9">
+                 <property name="minimumSize">
+                  <size>
+                   <width>45</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>45</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
                  <property name="text">
-                  <string>Y axis:</string>
+                  <string>Y   axis:</string>
                  </property>
                 </widget>
                </item>
@@ -193,8 +218,23 @@
                </item>
                <item>
                 <widget class="QLabel" name="yAxisLabel">
+                 <property name="minimumSize">
+                  <size>
+                   <width>45</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>45</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
                  <property name="text">
-                  <string>0</string>
+                  <string/>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                  </property>
                 </widget>
                </item>
@@ -204,8 +244,20 @@
               <layout class="QHBoxLayout" name="horizontalLayout_11">
                <item>
                 <widget class="QLabel" name="label_14">
+                 <property name="minimumSize">
+                  <size>
+                   <width>45</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>45</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
                  <property name="text">
-                  <string>Z axis:</string>
+                  <string>Z   axis:</string>
                  </property>
                 </widget>
                </item>
@@ -224,8 +276,23 @@
                </item>
                <item>
                 <widget class="QLabel" name="zaxisLabel">
+                 <property name="minimumSize">
+                  <size>
+                   <width>45</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>45</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
                  <property name="text">
-                  <string>0</string>
+                  <string/>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                  </property>
                 </widget>
                </item>
@@ -252,8 +319,20 @@
               <layout class="QHBoxLayout" name="horizontalLayout_12">
                <item>
                 <widget class="QLabel" name="label_13">
+                 <property name="minimumSize">
+                  <size>
+                   <width>50</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>45</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
                  <property name="text">
-                  <string>X rotate:</string>
+                  <string>X   rotate:</string>
                  </property>
                 </widget>
                </item>
@@ -272,8 +351,23 @@
                </item>
                <item>
                 <widget class="QLabel" name="xRotateLabel">
+                 <property name="minimumSize">
+                  <size>
+                   <width>45</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>45</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
                  <property name="text">
-                  <string>0</string>
+                  <string/>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                  </property>
                 </widget>
                </item>
@@ -283,8 +377,20 @@
               <layout class="QHBoxLayout" name="horizontalLayout_13">
                <item>
                 <widget class="QLabel" name="label_11">
+                 <property name="minimumSize">
+                  <size>
+                   <width>50</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>50</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
                  <property name="text">
-                  <string>Y rotate:</string>
+                  <string>Y   rotate:</string>
                  </property>
                 </widget>
                </item>
@@ -303,25 +409,34 @@
                </item>
                <item>
                 <widget class="QLabel" name="yRotateLabel">
+                 <property name="minimumSize">
+                  <size>
+                   <width>45</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>45</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
                  <property name="text">
-                  <string>0</string>
+                  <string/>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                  </property>
                 </widget>
                </item>
               </layout>
              </item>
              <item>
-              <spacer name="horizontalSpacer_11">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
+              <widget class="QLabel" name="label_10">
+               <property name="text">
+                <string/>
                </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>40</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
+              </widget>
              </item>
             </layout>
            </item>
@@ -335,15 +450,27 @@
           </widget>
          </item>
          <item>
-          <layout class="QHBoxLayout" name="horizontalLayout_26">
+          <layout class="QHBoxLayout" name="horizontalLayout_16">
            <item>
             <layout class="QVBoxLayout" name="verticalLayout_7">
              <item>
               <layout class="QHBoxLayout" name="horizontalLayout_21">
                <item>
                 <widget class="QLabel" name="label_16">
+                 <property name="minimumSize">
+                  <size>
+                   <width>45</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>45</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
                  <property name="text">
-                  <string>Hat 1:</string>
+                  <string>Hat   1: </string>
                  </property>
                 </widget>
                </item>
@@ -362,8 +489,23 @@
                </item>
                <item>
                 <widget class="QLabel" name="hat1Label">
+                 <property name="minimumSize">
+                  <size>
+                   <width>45</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>45</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
                  <property name="text">
-                  <string>0</string>
+                  <string/>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                  </property>
                 </widget>
                </item>
@@ -373,8 +515,20 @@
               <layout class="QHBoxLayout" name="horizontalLayout_22">
                <item>
                 <widget class="QLabel" name="label_19">
+                 <property name="minimumSize">
+                  <size>
+                   <width>45</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>45</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
                  <property name="text">
-                  <string>Hat 2:</string>
+                  <string>Hat   2:  </string>
                  </property>
                 </widget>
                </item>
@@ -393,17 +547,52 @@
                </item>
                <item>
                 <widget class="QLabel" name="hat2Label">
+                 <property name="minimumSize">
+                  <size>
+                   <width>45</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>45</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
                  <property name="text">
-                  <string>0</string>
+                  <string/>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                  </property>
                 </widget>
                </item>
               </layout>
              </item>
+             <item>
+              <widget class="QLabel" name="label_12">
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </item>
             </layout>
            </item>
            <item>
             <spacer name="horizontalSpacer_13">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>70</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <spacer name="horizontalSpacer_26">
              <property name="orientation">
               <enum>Qt::Horizontal</enum>
              </property>
@@ -416,70 +605,283 @@
             </spacer>
            </item>
            <item>
-            <layout class="QVBoxLayout" name="verticalLayout_8">
-             <item>
-              <layout class="QHBoxLayout" name="horizontalLayout_23">
-               <item>
-                <widget class="QLabel" name="label_21">
-                 <property name="text">
-                  <string>Ball 1:</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <spacer name="horizontalSpacer_20">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>40</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-               <item>
-                <widget class="QLabel" name="ball1Label">
-                 <property name="text">
-                  <string>0</string>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </item>
-             <item>
-              <layout class="QHBoxLayout" name="horizontalLayout_24">
-               <item>
-                <widget class="QLabel" name="label_20">
-                 <property name="text">
-                  <string>Ball 2:</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <spacer name="horizontalSpacer_21">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>40</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-               <item>
-                <widget class="QLabel" name="ball2Label">
-                 <property name="text">
-                  <string>0</string>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </item>
-            </layout>
+            <widget class="QWidget" name="ballWidget" native="true">
+             <layout class="QVBoxLayout" name="verticalLayout_5">
+              <item>
+               <layout class="QHBoxLayout" name="horizontalLayout_15">
+                <item>
+                 <spacer name="horizontalSpacer_22">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>40</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+                <item>
+                 <spacer name="horizontalSpacer_17">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>40</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+                <item>
+                 <widget class="QLabel" name="label_6">
+                  <property name="minimumSize">
+                   <size>
+                    <width>45</width>
+                    <height>0</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>45</width>
+                    <height>16777215</height>
+                   </size>
+                  </property>
+                  <property name="text">
+                   <string>X</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <spacer name="horizontalSpacer_25">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>40</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+                <item>
+                 <widget class="QLabel" name="label_8">
+                  <property name="minimumSize">
+                   <size>
+                    <width>45</width>
+                    <height>0</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>45</width>
+                    <height>16777215</height>
+                   </size>
+                  </property>
+                  <property name="text">
+                   <string>Y</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+              <item>
+               <layout class="QHBoxLayout" name="horizontalLayout_23">
+                <item>
+                 <widget class="QLabel" name="label_21">
+                  <property name="minimumSize">
+                   <size>
+                    <width>45</width>
+                    <height>0</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>45</width>
+                    <height>16777215</height>
+                   </size>
+                  </property>
+                  <property name="text">
+                   <string>Ball   1:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <spacer name="horizontalSpacer_20">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>40</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+                <item>
+                 <widget class="QLabel" name="ball1XLabel">
+                  <property name="minimumSize">
+                   <size>
+                    <width>45</width>
+                    <height>0</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>45</width>
+                    <height>16777215</height>
+                   </size>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <spacer name="horizontalSpacer_15">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>40</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+                <item>
+                 <widget class="QLabel" name="ball1YLabel">
+                  <property name="minimumSize">
+                   <size>
+                    <width>45</width>
+                    <height>0</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>45</width>
+                    <height>16777215</height>
+                   </size>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+              <item>
+               <layout class="QHBoxLayout" name="horizontalLayout_24">
+                <item>
+                 <widget class="QLabel" name="label_20">
+                  <property name="minimumSize">
+                   <size>
+                    <width>45</width>
+                    <height>0</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>45</width>
+                    <height>16777215</height>
+                   </size>
+                  </property>
+                  <property name="text">
+                   <string>Ball   2:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <spacer name="horizontalSpacer_21">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>40</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+                <item>
+                 <widget class="QLabel" name="ball2XLabel">
+                  <property name="minimumSize">
+                   <size>
+                    <width>45</width>
+                    <height>0</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>45</width>
+                    <height>16777215</height>
+                   </size>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <spacer name="horizontalSpacer_16">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>40</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+                <item>
+                 <widget class="QLabel" name="ball2YLabel">
+                  <property name="minimumSize">
+                   <size>
+                    <width>45</width>
+                    <height>0</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>45</width>
+                    <height>16777215</height>
+                   </size>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </widget>
            </item>
           </layout>
          </item>
@@ -516,6 +918,9 @@
              <property name="text">
               <string/>
              </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
             </widget>
            </item>
           </layout>
@@ -524,17 +929,17 @@
        </widget>
       </item>
       <item>
-       <widget class="QGroupBox" name="groupBox_2">
+       <widget class="QGroupBox" name="joyInfoBox">
         <property name="minimumSize">
          <size>
-          <width>0</width>
-          <height>400</height>
+          <width>320</width>
+          <height>250</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
-          <width>300</width>
-          <height>400</height>
+          <width>400</width>
+          <height>5000</height>
          </size>
         </property>
         <property name="title">
@@ -551,22 +956,18 @@
             </widget>
            </item>
            <item>
-            <spacer name="horizontalSpacer">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
+            <widget class="QLabel" name="nameLabel">
+             <property name="minimumSize">
               <size>
-               <width>40</width>
-               <height>20</height>
+               <width>30</width>
+               <height>0</height>
               </size>
              </property>
-            </spacer>
-           </item>
-           <item>
-            <widget class="QLabel" name="nameLabel">
              <property name="text">
               <string/>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
              </property>
             </widget>
            </item>
@@ -584,7 +985,7 @@
            <item>
             <widget class="QLabel" name="label_3">
              <property name="text">
-              <string>Num buttons:</string>
+              <string>Num   buttons:</string>
              </property>
             </widget>
            </item>
@@ -603,8 +1004,17 @@
            </item>
            <item>
             <widget class="QLabel" name="numButtonsLabel">
+             <property name="minimumSize">
+              <size>
+               <width>30</width>
+               <height>0</height>
+              </size>
+             </property>
              <property name="text">
               <string/>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
              </property>
             </widget>
            </item>
@@ -615,7 +1025,7 @@
            <item>
             <widget class="QLabel" name="label_5">
              <property name="text">
-              <string>Num axes:</string>
+              <string>Num   axes:</string>
              </property>
             </widget>
            </item>
@@ -634,8 +1044,17 @@
            </item>
            <item>
             <widget class="QLabel" name="numAxesLabel">
+             <property name="minimumSize">
+              <size>
+               <width>30</width>
+               <height>0</height>
+              </size>
+             </property>
              <property name="text">
               <string/>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
              </property>
             </widget>
            </item>
@@ -646,7 +1065,7 @@
            <item>
             <widget class="QLabel" name="label_7">
              <property name="text">
-              <string>Num hats:</string>
+              <string>Num   hats:</string>
              </property>
             </widget>
            </item>
@@ -665,8 +1084,17 @@
            </item>
            <item>
             <widget class="QLabel" name="numHatsLabel">
+             <property name="minimumSize">
+              <size>
+               <width>30</width>
+               <height>0</height>
+              </size>
+             </property>
              <property name="text">
               <string/>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
              </property>
             </widget>
            </item>
@@ -677,7 +1105,7 @@
            <item>
             <widget class="QLabel" name="label_2">
              <property name="text">
-              <string>Num balls:</string>
+              <string>Num   balls:</string>
              </property>
             </widget>
            </item>
@@ -696,8 +1124,17 @@
            </item>
            <item>
             <widget class="QLabel" name="numBallsLabel">
+             <property name="minimumSize">
+              <size>
+               <width>30</width>
+               <height>0</height>
+              </size>
+             </property>
              <property name="text">
               <string/>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
              </property>
             </widget>
            </item>
