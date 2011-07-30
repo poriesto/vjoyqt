@@ -36,8 +36,7 @@ class VJoystickAdapter : public QObject
     Q_DISABLE_COPY(VJoystickAdapter)
 
 public:
-    enum HatPosition
-    {
+    enum HatPosition {
         JOYSTICK_HAT_CENTERED = SDL_HAT_DOWN,
         JOYSTICK_HAT_UP = SDL_HAT_UP,
         JOYSTICK_HAT_UP_RIGHT = SDL_HAT_RIGHT,
@@ -55,33 +54,26 @@ public:
 
     bool open(int id);
     void close();
-    bool isConnected() const
-    {
+    bool isConnected() const {
         return m_joystick ? SDL_JoystickOpened(getJoystickId()) : false;
     }
 
-    inline int getJoystickId() const
-    {
+    inline int getJoystickId() const {
         return SDL_JoystickIndex(m_joystick);
     }
-    inline QString getJoystickName() const
-    {
+    inline QString getJoystickName() const {
         return QString(SDL_JoystickName(getJoystickId()));
     }
-    inline int getJoystickNumAxes() const
-    {
+    inline int getJoystickNumAxes() const {
         return SDL_JoystickNumAxes(m_joystick);
     }
-    inline int getJoystickNumHats() const
-    {
+    inline int getJoystickNumHats() const {
         return SDL_JoystickNumHats(m_joystick);
     }
-    inline int getJoystickNumBalls() const
-    {
+    inline int getJoystickNumBalls() const {
         return SDL_JoystickNumBalls(m_joystick);
     }
-    inline int getJoystickNumButtons() const
-    {
+    inline int getJoystickNumButtons() const {
         return SDL_JoystickNumButtons(m_joystick);
     }
 
