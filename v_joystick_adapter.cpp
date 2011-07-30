@@ -46,8 +46,6 @@ VJoystickAdapter::~VJoystickAdapter()
 
 bool VJoystickAdapter::open(int id)
 {
-    Q_ASSERT(!m_joystick);
-
     if(SDL_JoystickOpened(id))
         return false;
     m_joystick = SDL_JoystickOpen(id);
