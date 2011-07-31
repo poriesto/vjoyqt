@@ -68,6 +68,7 @@ void VJoyQtGUI::connectToDevices()
         connect(m_adapter, SIGNAL(sigBallChanged(int,int,int)), this, SLOT(slotBallChanged(int,int,int)));
 
         m_visibleButtons.fill(false, m_adapter->getJoystickNumButtons());
+        advancedConfigurationVisible();
     }
 }
 
@@ -225,7 +226,7 @@ void VJoyQtGUI::setJoystickInfo()
         ui->yAxisLabel->setText(noop);
         ui->xRotateLabel->setText(noop);
         ui->yRotateLabel->setText(noop);
-        ui->zaxisLabel->setText(noop);
+        ui->zAxisLabel->setText(noop);
         ui->hat1Label->setText(noop);
         ui->hat2Label->setText(noop);
         ui->ball1XLabel->setText(noop);
@@ -250,7 +251,7 @@ void VJoyQtGUI::clearJoystickInfo()
     ui->yAxisLabel->setText(noop);
     ui->xRotateLabel->setText(noop);
     ui->yRotateLabel->setText(noop);
-    ui->zaxisLabel->setText(noop);
+    ui->zAxisLabel->setText(noop);
     ui->hat1Label->setText(noop);
     ui->hat2Label->setText(noop);
     ui->ball1XLabel->setText(noop);
@@ -258,4 +259,20 @@ void VJoyQtGUI::clearJoystickInfo()
     ui->ball2XLabel->setText(noop);
     ui->ball2YLabel->setText(noop);
     ui->buttonLabel->setText(noop);
+}
+
+void VJoyQtGUI::advancedConfigurationVisible()
+{
+    if(m_adapter->getJoystickNumAxes() < 5) {
+        ui->zAxisLabel->setDisabled(true);
+        ui->zAxisTextLabel->setDisabled(true);
+    }
+    if(m_adapter->getJoystickNumHats() < 2) {
+        ui->hat2Label->setDisabled(true);
+        ui->hat2TextLabel->setDisabled(true);
+        if(m_adapter->getJoystickNumHats() < 1) {
+            ui->hat1Label->setDisabled(true);
+            ui->hat1TextLabel->setDisabled(true);
+        }
+    }
 }

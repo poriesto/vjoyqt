@@ -64,6 +64,8 @@ private:
     void setJoystickInfo();
     void clearJoystickInfo();
 
+    void advancedConfigurationVisible();
+
 private:
     Ui::MainWindow *ui;
     VJoystickAdapter *m_adapter;
