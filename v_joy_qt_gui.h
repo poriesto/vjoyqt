@@ -66,6 +66,8 @@ private:
 
     void advancedConfigurationVisible();
 
+    QString getHatsPosition(int pos);
+
 private:
     Ui::MainWindow *ui;
     VJoystickAdapter *m_adapter;

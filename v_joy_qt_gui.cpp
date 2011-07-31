@@ -150,10 +150,10 @@ void VJoyQtGUI::slotHatCanged(int id, int state)
 {
     switch(id) {
     case 0:
-        ui->hat1Label->setText(QString("%1").arg(state));
+        ui->hat1Label->setText(getHatsPosition(state));
         break;
     case 1:
-        ui->hat2Label->setText(QString("%1").arg(state));
+        ui->hat2Label->setText(getHatsPosition(state));
         break;
     }
 }
@@ -275,4 +275,41 @@ void VJoyQtGUI::advancedConfigurationVisible()
             ui->hat1TextLabel->setDisabled(true);
         }
     }
+}
+
+QString VJoyQtGUI::getHatsPosition(int pos)
+{
+    QString text("");
+
+    switch(pos) {
+    case VJoystickAdapter::JOYSTICK_HAT_CENTERED:
+        text += "centered";
+        break;
+    case VJoystickAdapter::JOYSTICK_HAT_UP:
+        text += "up";
+        break;
+    case VJoystickAdapter::JOYSTICK_HAT_UP_RIGHT:
+        text += "up right";
+        break;
+    case VJoystickAdapter::JOYSTICK_HAT_RIGHT:
+        text += "right";
+        break;
+    case VJoystickAdapter::JOYSTICK_HAT_RIGHT_DOWN:
+        text += "right down";
+        break;
+    case VJoystickAdapter::JOYSTICK_HAT_DOWN:
+        text += "down";
+        break;
+    case VJoystickAdapter::JOYSTICK_HAT_DOWN_LEFT:
+        text += "down left";
+        break;
+    case VJoystickAdapter::JOYSTICK_HAT_LEFT:
+        text += "left";
+        break;
+    case VJoystickAdapter::JOYSTICK_HAT_LEFT_UP:
+        text += "left up";
+        break;
+    }
+
+    return text;
 }
