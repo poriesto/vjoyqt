@@ -22,12 +22,13 @@
  * THE SOFTWARE.
  */
 
-#ifndef __V_JOYSTICK_ADAPTER_H
-#define __V_JOYSTICK_ADAPTER_H
+#ifndef _V_JOYSTICK_ADAPTER_H_
+#define _V_JOYSTICK_ADAPTER_H_
 
 #include <QThread>
 #include <QString>
 #include <QStringList>
+
 #include <SDL/SDL_joystick.h>
 
 class VJoystickAdapter : public QObject
@@ -107,4 +108,4 @@ private:
     VJoystickAdapter *m_adapter;
 };
 
-#endif // __V_JOYSTICK_ADAPTER_H
+#endif // _V_JOYSTICK_ADAPTER_H_

@@ -22,16 +22,15 @@
  * THE SOFTWARE.
  */
 
-#ifndef __V_VIDEO_SERVER_
-#define __V_VIDEO_SERVER_
+#ifndef _V_JOY_QT_GUI_H_
+#define _V_JOY_QT_GUI_H_
 
 #include <QMainWindow>
 #include <QKeyEvent>
 #include <QVector>
 
-namespace Ui
-{
-class MainWindow;
+namespace Ui {
+    class MainWindow;
 };
 
 class VJoystickAdapter;
@@ -74,4 +73,4 @@ private:
     QVector<bool> m_visibleButtons;
 };
 
-#endif // __V_VIDEO_SERVER_
+#endif // _V_JOY_QT_GUI_H_
