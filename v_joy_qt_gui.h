@@ -25,9 +25,11 @@
 #ifndef _V_JOY_QT_GUI_H_
 #define _V_JOY_QT_GUI_H_
 
-#include <QMainWindow>
-#include <QKeyEvent>
+// ------------------------------------------------------------------- INCLUDES
 #include <QVector>
+#include <QMainWindow>
+// ------------------------------------------------------------------- SYNOPSIS
+// ----------------------------------------------------------------------------
 
 namespace Ui {
     class MainWindow;

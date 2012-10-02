@@ -22,11 +22,13 @@
  * THE SOFTWARE.
  */
 
+// ------------------------------------------------------------------- INCLUDES
+#include <QKeyEvent>
+// ------------------------------------------------------------------- SYNOPSIS
 #include <v_joy_qt_gui.h>
 #include <ui_v_joy_qt_gui.h>
 #include <v_joystick_adapter.h>
-
-#include <QDebug>
+// ----------------------------------------------------------------------------
 
 VJoyQtGUI::VJoyQtGUI(QWidget *parent) :
     QMainWindow(parent), ui(new Ui::MainWindow), m_adapter(0)
@@ -56,9 +58,9 @@ void VJoyQtGUI::connectToDevices()
 {
     if(m_adapter) {
         if(m_adapter->isConnected()) {
-            m_adapter->close();
+            m_adapter->disconnect();
         }
-        m_adapter->open(ui->selectJoyBox->currentIndex());
+        m_adapter->connect(ui->selectJoyBox->currentIndex());
         setJoystickInfoVisible(true);
         setJoystickInfo();
 
@@ -75,7 +77,7 @@ void VJoyQtGUI::connectToDevices()
 void VJoyQtGUI::disconnectFromDevices()
 {
     if(m_adapter) {
-        m_adapter->close();
+        m_adapter->disconnect();
         setJoystickInfoVisible(false);
         clearJoystickInfo();
 
@@ -134,12 +136,15 @@ void VJoyQtGUI::slotAxisChanged(int id, int state)
     case 0:
         ui->xAxisLabel->setText(QString("%1").arg(state));
         break;
+
     case 1:
         ui->yAxisLabel->setText(QString("%1").arg(-state));
         break;
+
     case 2:
         ui->xRotateLabel->setText(QString("%1").arg(state));
         break;
+
     case 3:
         ui->yRotateLabel->setText(QString("%1").arg(-state));
         break;
@@ -152,6 +157,7 @@ void VJoyQtGUI::slotHatCanged(int id, int state)
     case 0:
         ui->hat1Label->setText(getHatsPosition(state));
         break;
+
     case 1:
         ui->hat2Label->setText(getHatsPosition(state));
         break;
@@ -160,7 +166,9 @@ void VJoyQtGUI::slotHatCanged(int id, int state)
 
 void VJoyQtGUI::slotBallChanged(int id, int stateX, int stateY)
 {
-
+    Q_UNUSED(id);
+    Q_UNUSED(stateX);
+    Q_UNUSED(stateY);
 }
 
 void VJoyQtGUI::keyPressEvent(QKeyEvent *event)
@@ -170,15 +178,19 @@ void VJoyQtGUI::keyPressEvent(QKeyEvent *event)
     case Qt::Key_S:
         scanDevices();
         break;
+
     case Qt::Key_C:
         connectToDevices();
         break;
+
     case Qt::Key_D:
         disconnectFromDevices();
         break;
+
     case Qt::Key_Escape:
         close();
         break;
+
     default:
         event->ignore();
         break;
@@ -285,28 +297,36 @@ QString VJoyQtGUI::getHatsPosition(int pos)
     case VJoystickAdapter::JOYSTICK_HAT_CENTERED:
         text += "centered";
         break;
+
     case VJoystickAdapter::JOYSTICK_HAT_UP:
         text += "up";
         break;
+
     case VJoystickAdapter::JOYSTICK_HAT_UP_RIGHT:
         text += "up right";
         break;
+
     case VJoystickAdapter::JOYSTICK_HAT_RIGHT:
         text += "right";
         break;
-    case VJoystickAdapter::JOYSTICK_HAT_RIGHT_DOWN:
+
+    case VJoystickAdapter::JOYSTICK_HAT_DOWN_RIGHT:
         text += "right down";
         break;
+
     case VJoystickAdapter::JOYSTICK_HAT_DOWN:
         text += "down";
         break;
+
     case VJoystickAdapter::JOYSTICK_HAT_DOWN_LEFT:
         text += "down left";
         break;
+
     case VJoystickAdapter::JOYSTICK_HAT_LEFT:
         text += "left";
         break;
-    case VJoystickAdapter::JOYSTICK_HAT_LEFT_UP:
+
+    case VJoystickAdapter::JOYSTICK_HAT_UP_LEFT:
         text += "left up";
         break;
     }

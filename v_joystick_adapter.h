@@ -25,11 +25,12 @@
 #ifndef _V_JOYSTICK_ADAPTER_H_
 #define _V_JOYSTICK_ADAPTER_H_
 
+// ------------------------------------------------------------------- INCLUDES
 #include <QThread>
 #include <QString>
 #include <QStringList>
-
-#include <SDL/SDL_joystick.h>
+// ------------------------------------------------------------------- SYNOPSIS
+// ----------------------------------------------------------------------------
 
 class VJoystickAdapter : public QObject
 {
@@ -38,45 +39,31 @@ class VJoystickAdapter : public QObject
 
 public:
     enum HatPosition {
-        JOYSTICK_HAT_CENTERED = SDL_HAT_CENTERED,
-        JOYSTICK_HAT_UP = SDL_HAT_UP,
-        JOYSTICK_HAT_UP_RIGHT = SDL_HAT_RIGHTUP,
-        JOYSTICK_HAT_RIGHT = SDL_HAT_RIGHT,
-        JOYSTICK_HAT_RIGHT_DOWN = SDL_HAT_RIGHTDOWN,
-        JOYSTICK_HAT_DOWN = SDL_HAT_DOWN,
-        JOYSTICK_HAT_DOWN_LEFT = SDL_HAT_LEFTDOWN,
-        JOYSTICK_HAT_LEFT = SDL_HAT_LEFT,
-        JOYSTICK_HAT_LEFT_UP = SDL_HAT_LEFTUP
+        JOYSTICK_HAT_CENTERED,
+        JOYSTICK_HAT_UP,
+        JOYSTICK_HAT_UP_RIGHT,
+        JOYSTICK_HAT_RIGHT,
+        JOYSTICK_HAT_DOWN_RIGHT,
+        JOYSTICK_HAT_DOWN,
+        JOYSTICK_HAT_DOWN_LEFT,
+        JOYSTICK_HAT_LEFT,
+        JOYSTICK_HAT_UP_LEFT
     };
 
 public:
     explicit VJoystickAdapter(QObject *parent = 0);
-    ~VJoystickAdapter();
+    virtual ~VJoystickAdapter();
 
-    bool open(int id);
-    void close();
-    bool isConnected() const {
-        return m_joystick ? SDL_JoystickOpened(getJoystickId()) : false;
-    }
+    bool connect(int id);
+    void disconnect();
+    bool isConnected() const;
 
-    inline int getJoystickId() const {
-        return SDL_JoystickIndex(m_joystick);
-    }
-    inline QString getJoystickName() const {
-        return QString(SDL_JoystickName(getJoystickId()));
-    }
-    inline int getJoystickNumAxes() const {
-        return SDL_JoystickNumAxes(m_joystick);
-    }
-    inline int getJoystickNumHats() const {
-        return SDL_JoystickNumHats(m_joystick);
-    }
-    inline int getJoystickNumBalls() const {
-        return SDL_JoystickNumBalls(m_joystick);
-    }
-    inline int getJoystickNumButtons() const {
-        return SDL_JoystickNumButtons(m_joystick);
-    }
+    int getJoystickId() const;
+    QString getJoystickName() const;
+    int getJoystickNumAxes() const;
+    int getJoystickNumHats() const;
+    int getJoystickNumBalls() const;
+    int getJoystickNumButtons() const;
 
     static int getNumAvaliableJoystick();
     static QStringList getAvaliableJoystickName();
@@ -88,10 +75,13 @@ signals:
     void sigBallChanged(int id, int stateX, int stateY);
 
 private:
-    class               VJoystickThread;
+    static HatPosition convertHatPosition(int position);
 
-    SDL_Joystick*       m_joystick;
-    VJoystickThread*    m_joystickThread;
+private:
+    class VJoystickThread;
+
+    struct d;
+    d* m_d;
 };
 
 class VJoystickAdapter::VJoystickThread : public QThread
@@ -99,13 +89,14 @@ class VJoystickAdapter::VJoystickThread : public QThread
     Q_OBJECT
 
 public:
-    inline VJoystickThread(VJoystickAdapter* adapter) : m_adapter(adapter) { }
+    VJoystickThread(VJoystickAdapter* adapter) : m_adapter(adapter) {}
 
 protected:
     virtual void run();
 
 private:
-    VJoystickAdapter *m_adapter;
+    VJoystickAdapter* m_adapter;
 };
+
 
 #endif // _V_JOYSTICK_ADAPTER_H_

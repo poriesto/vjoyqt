@@ -22,91 +22,111 @@
  * THE SOFTWARE.
  */
 
+// ------------------------------------------------------------------- INCLUDES
 #include <SDL/SDL.h>
-
+#include <SDL/SDL_joystick.h>
+// ------------------------------------------------------------------- SYNOPSIS
 #include "v_joystick_adapter.h"
+// ----------------------------------------------------------------------------
+
+struct VJoystickAdapter::d
+{
+    SDL_Joystick* m_sdlJoystick;
+    VJoystickAdapter::VJoystickThread* m_joystickThread;
+};
+
+// ----------------------------------------------------------------------------
 
 VJoystickAdapter::VJoystickAdapter(QObject *parent) :
     QObject(parent),
-    m_joystick(0)
+    m_d(NULL)
 {
+    m_d = new d;
+
     SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK);
     SDL_JoystickEventState(SDL_ENABLE);
-    m_joystickThread = new VJoystickThread(this);
 }
 
 VJoystickAdapter::~VJoystickAdapter()
 {
-    if(isConnected())
-        close();
-    delete m_joystickThread;
+    if(isConnected()) {
+        disconnect();
+    }
+
     SDL_JoystickEventState(SDL_DISABLE);
     SDL_Quit();
+
+    delete m_d;
+    m_d = NULL;
 }
 
-bool VJoystickAdapter::open(int id)
+bool VJoystickAdapter::connect(int id)
 {
-    if(SDL_JoystickOpened(id))
+    if(SDL_JoystickOpened(id)) {
         return false;
-    m_joystick = SDL_JoystickOpen(id);
-    if(SDL_JoystickOpened(id))
-    {
-        m_joystickThread->start();
     }
-    else
-        m_joystick = 0;
-    return m_joystick;
+    m_d->m_sdlJoystick = SDL_JoystickOpen(id);
+
+    if(SDL_JoystickOpened(id)) {
+        m_d->m_joystickThread = new VJoystickThread(this);
+        m_d->m_joystickThread->start();
+    }
+    else {
+        m_d->m_sdlJoystick = NULL;
+    }
+    return m_d->m_sdlJoystick;
 }
 
-void VJoystickAdapter::close()
+void VJoystickAdapter::disconnect()
 {
-    if(m_joystick)
+    if(m_d->m_sdlJoystick)
     {
         SDL_Event closeEvent;
 
         closeEvent.type = SDL_QUIT;
         SDL_PushEvent(&closeEvent);
+        m_d->m_joystickThread->wait();
 
-        m_joystickThread->wait();
-        SDL_JoystickClose(m_joystick);
-        m_joystick = 0;
+        delete m_d->m_joystickThread;
+        m_d->m_joystickThread = NULL;
+
+        SDL_JoystickClose(m_d->m_sdlJoystick);
+        m_d->m_sdlJoystick = 0;
     }
 }
 
-void VJoystickAdapter::VJoystickThread::run()
+bool VJoystickAdapter::isConnected() const
 {
-    SDL_Event joyEvent;
-    bool running = true;
+    return m_d->m_sdlJoystick ? SDL_JoystickOpened(getJoystickId()) : false;
+}
 
-    while(running)
-    {
-        SDL_WaitEvent(&joyEvent);
+int VJoystickAdapter::getJoystickId() const
+{
+    return SDL_JoystickIndex(m_d->m_sdlJoystick);
+}
+QString VJoystickAdapter::getJoystickName() const
+{
+    return QString(SDL_JoystickName(getJoystickId()));
+}
 
-        if(joyEvent.type == SDL_QUIT)
-            running = false;
-        else if(joyEvent.jbutton.which == m_adapter->getJoystickId())
-        {
-            switch(joyEvent.type)
-            {
-            case SDL_JOYAXISMOTION:
-                emit m_adapter->sigAxisChanged(joyEvent.jaxis.axis,joyEvent.jaxis.value);
-                break;
+int VJoystickAdapter::getJoystickNumAxes() const
+{
+    return SDL_JoystickNumAxes(m_d->m_sdlJoystick);
+}
 
-            case SDL_JOYHATMOTION:
-                emit m_adapter->sigHatCanged(joyEvent.jhat.hat, joyEvent.jhat.value);
-                break;
+int VJoystickAdapter::getJoystickNumHats() const
+{
+    return SDL_JoystickNumHats(m_d->m_sdlJoystick);
+}
 
-            case SDL_JOYBALLMOTION:
-                emit m_adapter->sigBallChanged(joyEvent.jball.ball, joyEvent.jball.xrel, joyEvent.jball.yrel);
-                break;
+int VJoystickAdapter::getJoystickNumBalls() const
+{
+    return SDL_JoystickNumBalls(m_d->m_sdlJoystick);
+}
 
-            case SDL_JOYBUTTONDOWN:
-            case SDL_JOYBUTTONUP:
-                emit m_adapter->sigButtonChanged(joyEvent.jbutton.button, joyEvent.jbutton.state);
-                break;
-            }
-        }
-    }
+int VJoystickAdapter::getJoystickNumButtons() const
+{
+    return SDL_JoystickNumButtons(m_d->m_sdlJoystick);
 }
 
 int VJoystickAdapter::getNumAvaliableJoystick()
@@ -125,4 +145,89 @@ QStringList VJoystickAdapter::getAvaliableJoystickName()
         joyNames.push_front(QString(SDL_JoystickName(i)));
 
     return joyNames;
+}
+
+void VJoystickAdapter::VJoystickThread::run()
+{
+    SDL_Event joyEvent;
+    bool running = true;
+
+    int joystickId = m_adapter->getJoystickId();
+
+    while(running) {
+        SDL_WaitEvent(&joyEvent);
+
+        if(joyEvent.type == SDL_QUIT) {
+            running = false;
+        }
+        else if(joyEvent.jbutton.which == joystickId)
+        {
+            switch(joyEvent.type) {
+            case SDL_JOYAXISMOTION:
+                emit m_adapter->sigAxisChanged(joyEvent.jaxis.axis,joyEvent.jaxis.value);
+                break;
+
+            case SDL_JOYHATMOTION:
+                emit m_adapter->sigHatCanged(joyEvent.jhat.hat, VJoystickAdapter::convertHatPosition(joyEvent.jhat.value));
+                break;
+
+            case SDL_JOYBALLMOTION:
+                emit m_adapter->sigBallChanged(joyEvent.jball.ball, joyEvent.jball.xrel, joyEvent.jball.yrel);
+                break;
+
+            case SDL_JOYBUTTONDOWN:
+            case SDL_JOYBUTTONUP:
+                emit m_adapter->sigButtonChanged(joyEvent.jbutton.button, joyEvent.jbutton.state);
+                break;
+
+            default:
+                break;
+            }
+        }
+    }
+}
+
+VJoystickAdapter::HatPosition VJoystickAdapter::convertHatPosition(int position)
+{
+    switch(position) {
+    case SDL_HAT_CENTERED:
+        return JOYSTICK_HAT_CENTERED;
+        break;
+
+    case SDL_HAT_UP:
+        return JOYSTICK_HAT_UP;
+        break;
+
+    case SDL_HAT_RIGHTUP:
+        return JOYSTICK_HAT_UP_RIGHT;
+        break;
+
+    case SDL_HAT_RIGHT:
+        return JOYSTICK_HAT_RIGHT;
+        break;
+
+    case SDL_HAT_RIGHTDOWN:
+        return JOYSTICK_HAT_DOWN_RIGHT;
+        break;
+
+    case SDL_HAT_DOWN:
+        return JOYSTICK_HAT_DOWN;
+        break;
+    case SDL_HAT_LEFTDOWN:
+        return JOYSTICK_HAT_DOWN_LEFT;
+        break;
+
+    case SDL_HAT_LEFT:
+        return JOYSTICK_HAT_LEFT;
+        break;
+
+    case SDL_HAT_LEFTUP:
+        return JOYSTICK_HAT_UP_LEFT;
+        break;
+
+    default:
+        return JOYSTICK_HAT_CENTERED;
+        break;
+    }
+    return JOYSTICK_HAT_CENTERED;
 }
