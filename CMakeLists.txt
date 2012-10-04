@@ -1,7 +1,8 @@
-# --------------------------------------------
-# cmake file for vJoyQt project
-# author: Evgeny Proydakov lord.tiran@gmail.com
-# --------------------------------------------
+#==============================================================================
+# Copyright (c) 2012 Evgeny Proydakov <lord.tiran@gmail.com>
+# CMake file for vJoyQt project
+#==============================================================================
+
 CMAKE_MINIMUM_REQUIRED(VERSION 2.6.0)
 
 PROJECT(VJOYQT)
@@ -24,24 +25,27 @@ SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/build)
 INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR})
 INCLUDE_DIRECTORIES(${PROJECT_BINARY_DIR})
 
-# find Qt components
-FIND_PACKAGE(Qt4 COMPONENTS QtCore QtGui REQUIRED)
-INCLUDE(${QT_USE_FILE})
+SET(LIB_DIR ${PROJECT_SOURCE_DIR}/vjoyqt)
 
-# find SDL library
-FIND_PACKAGE(SDL)
-INCLUDE_DIRECTORIES(${SDL_INCLUDE_DIR})
-
-SET(LIB_HEADER_FILES
-    v_joystick_adapter.h)
-
-SET(LIB_SOURCE_FILES
-    v_joystick_adapter.cpp)
-
-QT4_WRAP_CPP(MOC_SOURCES ${LIB_HEADER_FILES})
-
-ADD_LIBRARY(vjoyqt ${LIB_HEADER_FILES} ${LIB_SOURCE_FILES} ${MOC_SOURCES})
-TARGET_LINK_LIBRARIES(vjoyqt ${QT_LIBRARIES})
-TARGET_LINK_LIBRARIES(vjoyqt ${SDL_LIBRARY})
-
+ADD_SUBDIRECTORY(${LIB_DIR})
 ADD_SUBDIRECTORY(ui)
+
+#==============================================================================
+#------------------------------- install --------------------------------------
+#==============================================================================
+
+IF(UNIX)
+    SET(CMAKE_INSTALL_PREFIX /usr/local)
+ELSEIF(WIN32)
+    SET(CMAKE_INSTALL_PREFIX c:/vjoyqt)
+ENDIF(UNIX)
+
+INSTALL(FILES vjoyqt/v_joystick_adapter.h DESTINATION include/vjoyqt)
+
+ADD_CUSTOM_TARGET(uninstall @echo uninstall package)
+
+ADD_CUSTOM_COMMAND(
+    COMMENT "uninstall package"
+    COMMAND xargs ARGS rm < install_manifest.txt
+    COMMAND rm ARGS -r ${CMAKE_INSTALL_PREFIX}/include/vjoyqt
+    TARGET  uninstall)

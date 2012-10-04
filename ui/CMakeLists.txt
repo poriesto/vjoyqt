@@ -2,11 +2,12 @@
 # Copyright (c) 2012 Evgeny Proydakov <lord.tiran@gmail.com>
 #==============================================================================
 
-MESSAGE(STATUS "CREATE JOYSTICK-UI EXECUTABLE")
+MESSAGE(STATUS "CREATE VJOYSTICK-UI EXECUTABLE")
 
 FIND_PACKAGE(Qt4 COMPONENTS QtGui QtCore REQUIRED)
 INCLUDE(${QT_USE_FILE})
 
+INCLUDE_DIRECTORIES(${LIB_DIR})
 INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR})
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_BINARY_DIR})
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR})
@@ -55,6 +56,4 @@ TARGET_LINK_LIBRARIES(vjoystick-ui vjoyqt)
 
 #==============================================================================
 
-IF(INSTALL_LIB)
-    INSTALL(TARGETS vjoystick-ui DESTINATION bin)
-ENDIF(INSTALL_LIB)
+INSTALL(TARGETS vjoystick-ui DESTINATION bin)
