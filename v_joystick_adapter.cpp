@@ -1,7 +1,5 @@
 /*
- * The MIT License
- *
- * Copyright (c) 2011 Evgeny Proydakov lord.tiran@gmail.com
+ * Copyright (c) 2012 Evgeny Proydakov <lord.tiran@gmail.com>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -141,8 +139,9 @@ QStringList VJoystickAdapter::getAvaliableJoystickName()
 
     int joyNum = getNumAvaliableJoystick();
 
-    for(int i = 0; i < joyNum; ++i)
+    for(int i = 0; i < joyNum; ++i) {
         joyNames.push_front(QString(SDL_JoystickName(i)));
+    }
 
     return joyNames;
 }

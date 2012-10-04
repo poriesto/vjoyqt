@@ -1,17 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>MainWindow</class>
- <widget class="QMainWindow" name="MainWindow">
+ <class>VJoystickMainWindow</class>
+ <widget class="QMainWindow" name="VJoystickMainWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>634</width>
-    <height>386</height>
+    <width>1002</width>
+    <height>564</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>VJoyGUI</string>
+   <string>vjoystick-ui</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="resources/resources.qrc">
+    <normaloff>:/logo.png</normaloff>:/logo.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -21,7 +25,7 @@
        <enum>QLayout::SetMinimumSize</enum>
       </property>
       <item>
-       <widget class="QLabel" name="selectJoyLabel">
+       <widget class="QLabel" name="lableSelectJoy">
         <property name="maximumSize">
          <size>
           <width>120</width>
@@ -37,7 +41,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QComboBox" name="selectJoyBox">
+       <widget class="QComboBox" name="comboBoxSelectJoy">
         <property name="maximumSize">
          <size>
           <width>16777215</width>
@@ -47,7 +51,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="scanDevicesButton">
+       <widget class="QPushButton" name="pushButtonScan">
         <property name="maximumSize">
          <size>
           <width>120</width>
@@ -67,7 +71,7 @@
        <enum>QLayout::SetMinimumSize</enum>
       </property>
       <item>
-       <widget class="QPushButton" name="connectButton">
+       <widget class="QPushButton" name="pushButtonConnect">
         <property name="maximumSize">
          <size>
           <width>16777215</width>
@@ -80,7 +84,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="disconnectButton">
+       <widget class="QPushButton" name="pushButtonDisconnect">
         <property name="maximumSize">
          <size>
           <width>16777215</width>
@@ -100,26 +104,23 @@
        <enum>QLayout::SetMaximumSize</enum>
       </property>
       <item>
-       <widget class="QGroupBox" name="joyStateBox">
+       <widget class="QGroupBox" name="groupBoxState">
         <property name="minimumSize">
          <size>
-          <width>300</width>
+          <width>350</width>
           <height>250</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
-          <width>55555</width>
-          <height>400</height>
+          <width>16777215</width>
+          <height>16777215</height>
          </size>
         </property>
         <property name="title">
          <string>Joystick state</string>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_6">
-         <property name="sizeConstraint">
-          <enum>QLayout::SetMaximumSize</enum>
-         </property>
          <item>
           <layout class="QHBoxLayout" name="horizontalLayout_14">
            <item>
@@ -127,7 +128,7 @@
              <item>
               <layout class="QHBoxLayout" name="horizontalLayout_9">
                <item>
-                <widget class="QLabel" name="xAxisTextLabel">
+                <widget class="QLabel" name="labelXAxisText">
                  <property name="minimumSize">
                   <size>
                    <width>45</width>
@@ -159,7 +160,7 @@
                 </spacer>
                </item>
                <item>
-                <widget class="QLabel" name="xAxisLabel">
+                <widget class="QLabel" name="labelXAxis">
                  <property name="minimumSize">
                   <size>
                    <width>45</width>
@@ -185,7 +186,7 @@
              <item>
               <layout class="QHBoxLayout" name="horizontalLayout_10">
                <item>
-                <widget class="QLabel" name="yAxisTextLabel">
+                <widget class="QLabel" name="labelYAxisText">
                  <property name="minimumSize">
                   <size>
                    <width>45</width>
@@ -217,7 +218,7 @@
                 </spacer>
                </item>
                <item>
-                <widget class="QLabel" name="yAxisLabel">
+                <widget class="QLabel" name="labelYAxis">
                  <property name="minimumSize">
                   <size>
                    <width>45</width>
@@ -243,7 +244,7 @@
              <item>
               <layout class="QHBoxLayout" name="horizontalLayout_11">
                <item>
-                <widget class="QLabel" name="zAxisTextLabel">
+                <widget class="QLabel" name="labelZAxisText">
                  <property name="minimumSize">
                   <size>
                    <width>45</width>
@@ -275,7 +276,7 @@
                 </spacer>
                </item>
                <item>
-                <widget class="QLabel" name="zAxisLabel">
+                <widget class="QLabel" name="labelZAxis">
                  <property name="minimumSize">
                   <size>
                    <width>45</width>
@@ -318,7 +319,7 @@
              <item>
               <layout class="QHBoxLayout" name="horizontalLayout_12">
                <item>
-                <widget class="QLabel" name="xRotateTextLabel">
+                <widget class="QLabel" name="labelXRotateText">
                  <property name="minimumSize">
                   <size>
                    <width>50</width>
@@ -350,7 +351,7 @@
                 </spacer>
                </item>
                <item>
-                <widget class="QLabel" name="xRotateLabel">
+                <widget class="QLabel" name="labelXRotate">
                  <property name="minimumSize">
                   <size>
                    <width>45</width>
@@ -376,7 +377,7 @@
              <item>
               <layout class="QHBoxLayout" name="horizontalLayout_13">
                <item>
-                <widget class="QLabel" name="yRotateTextLabel">
+                <widget class="QLabel" name="labelYRotateText">
                  <property name="minimumSize">
                   <size>
                    <width>50</width>
@@ -408,7 +409,7 @@
                 </spacer>
                </item>
                <item>
-                <widget class="QLabel" name="yRotateLabel">
+                <widget class="QLabel" name="labelYRotate">
                  <property name="minimumSize">
                   <size>
                    <width>45</width>
@@ -450,13 +451,13 @@
           </widget>
          </item>
          <item>
-          <layout class="QHBoxLayout" name="horizontalLayout_16">
+          <layout class="QHBoxLayout" name="horizontalLayout_15">
            <item>
             <layout class="QVBoxLayout" name="verticalLayout_7">
              <item>
               <layout class="QHBoxLayout" name="horizontalLayout_21">
                <item>
-                <widget class="QLabel" name="hat1TextLabel">
+                <widget class="QLabel" name="labelHat1Text">
                  <property name="minimumSize">
                   <size>
                    <width>45</width>
@@ -488,7 +489,7 @@
                 </spacer>
                </item>
                <item>
-                <widget class="QLabel" name="hat1Label">
+                <widget class="QLabel" name="labelHat1">
                  <property name="minimumSize">
                   <size>
                    <width>65</width>
@@ -514,7 +515,7 @@
              <item>
               <layout class="QHBoxLayout" name="horizontalLayout_22">
                <item>
-                <widget class="QLabel" name="hat2TextLabel">
+                <widget class="QLabel" name="labelHat2Text">
                  <property name="minimumSize">
                   <size>
                    <width>45</width>
@@ -546,7 +547,7 @@
                 </spacer>
                </item>
                <item>
-                <widget class="QLabel" name="hat2Label">
+                <widget class="QLabel" name="labelHat2">
                  <property name="minimumSize">
                   <size>
                    <width>65</width>
@@ -595,35 +596,9 @@
             <widget class="QWidget" name="ballWidget" native="true">
              <layout class="QVBoxLayout" name="verticalLayout_5">
               <item>
-               <layout class="QHBoxLayout" name="horizontalLayout_15">
-                <item>
-                 <spacer name="horizontalSpacer_22">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>40</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-                <item>
-                 <spacer name="horizontalSpacer_17">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>40</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-                <item>
-                 <widget class="QLabel" name="ballXTextLabel">
+               <layout class="QGridLayout" name="gridLayout">
+                <item row="0" column="1">
+                 <widget class="QLabel" name="labeBallXText">
                   <property name="minimumSize">
                    <size>
                     <width>45</width>
@@ -644,21 +619,8 @@
                   </property>
                  </widget>
                 </item>
-                <item>
-                 <spacer name="horizontalSpacer_25">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>40</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-                <item>
-                 <widget class="QLabel" name="ballYTextLabel">
+                <item row="0" column="2">
+                 <widget class="QLabel" name="labeBallYText">
                   <property name="minimumSize">
                    <size>
                     <width>45</width>
@@ -679,12 +641,8 @@
                   </property>
                  </widget>
                 </item>
-               </layout>
-              </item>
-              <item>
-               <layout class="QHBoxLayout" name="horizontalLayout_23">
-                <item>
-                 <widget class="QLabel" name="ball1TextLabel">
+                <item row="1" column="0">
+                 <widget class="QLabel" name="labeBall1Text">
                   <property name="minimumSize">
                    <size>
                     <width>45</width>
@@ -702,21 +660,8 @@
                   </property>
                  </widget>
                 </item>
-                <item>
-                 <spacer name="horizontalSpacer_20">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>40</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-                <item>
-                 <widget class="QLabel" name="ball1XLabel">
+                <item row="1" column="1">
+                 <widget class="QLabel" name="labelBall1X">
                   <property name="minimumSize">
                    <size>
                     <width>45</width>
@@ -737,21 +682,8 @@
                   </property>
                  </widget>
                 </item>
-                <item>
-                 <spacer name="horizontalSpacer_15">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>40</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-                <item>
-                 <widget class="QLabel" name="ball1YLabel">
+                <item row="1" column="2">
+                 <widget class="QLabel" name="labelBall1Y">
                   <property name="minimumSize">
                    <size>
                     <width>45</width>
@@ -772,12 +704,8 @@
                   </property>
                  </widget>
                 </item>
-               </layout>
-              </item>
-              <item>
-               <layout class="QHBoxLayout" name="horizontalLayout_24">
-                <item>
-                 <widget class="QLabel" name="ball2TextLabel">
+                <item row="2" column="0">
+                 <widget class="QLabel" name="labeBall2Text">
                   <property name="minimumSize">
                    <size>
                     <width>45</width>
@@ -795,21 +723,8 @@
                   </property>
                  </widget>
                 </item>
-                <item>
-                 <spacer name="horizontalSpacer_21">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>40</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-                <item>
-                 <widget class="QLabel" name="ball2XLabel">
+                <item row="2" column="1">
+                 <widget class="QLabel" name="labelBall2X">
                   <property name="minimumSize">
                    <size>
                     <width>45</width>
@@ -830,21 +745,8 @@
                   </property>
                  </widget>
                 </item>
-                <item>
-                 <spacer name="horizontalSpacer_16">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>40</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-                <item>
-                 <widget class="QLabel" name="ball2YLabel">
+                <item row="2" column="2">
+                 <widget class="QLabel" name="labelBall2Y">
                   <property name="minimumSize">
                    <size>
                     <width>45</width>
@@ -882,7 +784,7 @@
          <item>
           <layout class="QHBoxLayout" name="horizontalLayout_25">
            <item>
-            <widget class="QLabel" name="buttonTextLabel">
+            <widget class="QLabel" name="labeButtonText">
              <property name="minimumSize">
               <size>
                <width>60</width>
@@ -901,7 +803,7 @@
             </widget>
            </item>
            <item>
-            <widget class="QLabel" name="buttonLabel">
+            <widget class="QLabel" name="labelButton">
              <property name="text">
               <string/>
              </property>
@@ -916,17 +818,17 @@
        </widget>
       </item>
       <item>
-       <widget class="QGroupBox" name="joyInfoBox">
+       <widget class="QGroupBox" name="groupBoxInfo">
         <property name="minimumSize">
          <size>
-          <width>320</width>
+          <width>350</width>
           <height>250</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
-          <width>400</width>
-          <height>5000</height>
+          <width>16777215</width>
+          <height>16777215</height>
          </size>
         </property>
         <property name="title">
@@ -936,17 +838,36 @@
          <item>
           <layout class="QHBoxLayout" name="horizontalLayout_4">
            <item>
-            <widget class="QLabel" name="nameTextLabel">
+            <widget class="QLabel" name="labelNameText">
+             <property name="minimumSize">
+              <size>
+               <width>100</width>
+               <height>0</height>
+              </size>
+             </property>
              <property name="text">
               <string>Name:</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QLabel" name="nameLabel">
+            <spacer name="horizontalSpacer">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QLabel" name="labelName">
              <property name="minimumSize">
               <size>
-               <width>30</width>
+               <width>300</width>
                <height>0</height>
               </size>
              </property>
@@ -954,7 +875,7 @@
               <string/>
              </property>
              <property name="alignment">
-              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+              <set>Qt::AlignCenter</set>
              </property>
             </widget>
            </item>
@@ -970,7 +891,13 @@
          <item>
           <layout class="QHBoxLayout" name="horizontalLayout_5">
            <item>
-            <widget class="QLabel" name="numButtonsTextLabel">
+            <widget class="QLabel" name="labeNumButtonsText">
+             <property name="minimumSize">
+              <size>
+               <width>100</width>
+               <height>0</height>
+              </size>
+             </property>
              <property name="text">
               <string>Num   buttons:</string>
              </property>
@@ -990,10 +917,10 @@
             </spacer>
            </item>
            <item>
-            <widget class="QLabel" name="numButtonsLabel">
+            <widget class="QLabel" name="labelNumButtons">
              <property name="minimumSize">
               <size>
-               <width>30</width>
+               <width>100</width>
                <height>0</height>
               </size>
              </property>
@@ -1001,7 +928,7 @@
               <string/>
              </property>
              <property name="alignment">
-              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+              <set>Qt::AlignCenter</set>
              </property>
             </widget>
            </item>
@@ -1010,7 +937,13 @@
          <item>
           <layout class="QHBoxLayout" name="horizontalLayout_6">
            <item>
-            <widget class="QLabel" name="numAxesTextLabel">
+            <widget class="QLabel" name="labeNumAxesText">
+             <property name="minimumSize">
+              <size>
+               <width>100</width>
+               <height>0</height>
+              </size>
+             </property>
              <property name="text">
               <string>Num   axes:</string>
              </property>
@@ -1030,10 +963,10 @@
             </spacer>
            </item>
            <item>
-            <widget class="QLabel" name="numAxesLabel">
+            <widget class="QLabel" name="labelNumAxes">
              <property name="minimumSize">
               <size>
-               <width>30</width>
+               <width>100</width>
                <height>0</height>
               </size>
              </property>
@@ -1041,7 +974,7 @@
               <string/>
              </property>
              <property name="alignment">
-              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+              <set>Qt::AlignCenter</set>
              </property>
             </widget>
            </item>
@@ -1050,7 +983,13 @@
          <item>
           <layout class="QHBoxLayout" name="horizontalLayout_7">
            <item>
-            <widget class="QLabel" name="numHatsTextLabel">
+            <widget class="QLabel" name="labeNumHatsText">
+             <property name="minimumSize">
+              <size>
+               <width>100</width>
+               <height>0</height>
+              </size>
+             </property>
              <property name="text">
               <string>Num   hats:</string>
              </property>
@@ -1070,10 +1009,10 @@
             </spacer>
            </item>
            <item>
-            <widget class="QLabel" name="numHatsLabel">
+            <widget class="QLabel" name="labelNumHats">
              <property name="minimumSize">
               <size>
-               <width>30</width>
+               <width>100</width>
                <height>0</height>
               </size>
              </property>
@@ -1081,7 +1020,7 @@
               <string/>
              </property>
              <property name="alignment">
-              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+              <set>Qt::AlignCenter</set>
              </property>
             </widget>
            </item>
@@ -1090,7 +1029,13 @@
          <item>
           <layout class="QHBoxLayout" name="horizontalLayout_8">
            <item>
-            <widget class="QLabel" name="numBallsTextLabel">
+            <widget class="QLabel" name="labelNumBallsText">
+             <property name="minimumSize">
+              <size>
+               <width>100</width>
+               <height>0</height>
+              </size>
+             </property>
              <property name="text">
               <string>Num   balls:</string>
              </property>
@@ -1110,10 +1055,10 @@
             </spacer>
            </item>
            <item>
-            <widget class="QLabel" name="numBallsLabel">
+            <widget class="QLabel" name="labelNumBalls">
              <property name="minimumSize">
               <size>
-               <width>30</width>
+               <width>100</width>
                <height>0</height>
               </size>
              </property>
@@ -1121,7 +1066,7 @@
               <string/>
              </property>
              <property name="alignment">
-              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+              <set>Qt::AlignCenter</set>
              </property>
             </widget>
            </item>
@@ -1140,17 +1085,69 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>634</width>
+     <width>1002</width>
      <height>20</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuExit">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionScan"/>
+    <addaction name="actionConnect"/>
+    <addaction name="actionDisconnect"/>
+    <addaction name="separator"/>
+    <addaction name="actionExit"/>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>Help</string>
+    </property>
+    <addaction name="actionAbout"/>
+   </widget>
+   <addaction name="menuExit"/>
+   <addaction name="menuHelp"/>
   </widget>
+  <action name="actionExit">
+   <property name="text">
+    <string>Exit</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
+   </property>
+  </action>
   <action name="actionAbout">
    <property name="text">
     <string>About</string>
    </property>
   </action>
+  <action name="actionConnect">
+   <property name="text">
+    <string>Connect</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+C</string>
+   </property>
+  </action>
+  <action name="actionDisconnect">
+   <property name="text">
+    <string>Disconnect</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+D</string>
+   </property>
+  </action>
+  <action name="actionScan">
+   <property name="text">
+    <string>Scan</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
+  </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="resources/resources.qrc"/>
+ </resources>
  <connections/>
 </ui>

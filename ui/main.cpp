@@ -22,57 +22,16 @@
  * THE SOFTWARE.
  */
 
-#ifndef _V_JOY_QT_GUI_H_
-#define _V_JOY_QT_GUI_H_
-
 // ------------------------------------------------------------------- INCLUDES
-#include <QVector>
-#include <QMainWindow>
+#include <QtGui/QApplication>
 // ------------------------------------------------------------------- SYNOPSIS
+#include <v_joystick_main_window.h>
 // ----------------------------------------------------------------------------
 
-namespace Ui {
-    class MainWindow;
-};
-
-class VJoystickAdapter;
-
-class VJoyQtGUI : public QMainWindow
+int main(int argc, char *argv[])
 {
-    Q_OBJECT
-
-public:
-    VJoyQtGUI(QWidget *parent = 0 );
-    ~VJoyQtGUI();
-
-private slots:
-    void connectToDevices();
-    void disconnectFromDevices();
-
-    void scanDevices();
-
-    void slotButtonChanged(int id, bool state);
-    void slotAxisChanged(int id, int state);
-    void slotHatCanged(int id, int state);
-    void slotBallChanged(int id, int stateX, int stateY);
-
-private:
-    void keyPressEvent(QKeyEvent *event);
-
-    void setJoystickInfoVisible(bool visible);
-    void setDeviceControlVisible(bool visible);
-
-    void setJoystickInfo();
-    void clearJoystickInfo();
-
-    void advancedConfigurationVisible();
-
-    QString getHatsPosition(int pos);
-
-private:
-    Ui::MainWindow *ui;
-    VJoystickAdapter *m_adapter;
-    QVector<bool> m_visibleButtons;
-};
-
-#endif // _V_JOY_QT_GUI_H_
+    QApplication a(argc, argv);
+    VJoystickMainWindow window;
+    window.showMaximized();
+    return a.exec();
+}
